@@ -13,9 +13,14 @@ function normalizeEntry {
 	local entry="$*"
 	local fragment=$(echo $entry | cut -d '{' -f 2 | tr -d '#}')
 
-	name="$(echo $fragment | tr ':' '.')"
-	type='TODO'
+	name="$(echo $fragment | tr ':' '.')"	# replace namespace marker with method-accessor syntax
+
 	path="$(echo $entry | cut -d ':' -f 1)#$fragment"
+
+	if echo $fragment | grep -q ':'	# a class is not namespaced
+	then type='Method'
+	else type='Class'
+	fi
 }
 
 

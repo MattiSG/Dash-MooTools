@@ -1,26 +1,22 @@
-source 'MSGShellUtils/paths.sh'
-
-SOURCE_FOLDER="$(dirname $0)/mootools-core/Docs"
-
-name=''
-type=''
-path=''
+#!/usr/bin/env ruby
 
 
 # Example entry:
 # ./mootools-core/Docs/Types/String.md:String method: clean {#String:clean}
-function normalizeEntry {
-	local entry="$*"
-	local fragment=$(echo $entry | cut -d '{' -f 2 | tr -d '#}')
+def normalize(entry)
+	fragment = entry.split('{')[1].tr('#}', '')
 
-	name="$(echo $fragment | tr ':' '.')"	# replace namespace marker with method-accessor syntax
+	name = fragment.tr(':', '.')	# replace namespace marker with method-accessor syntax
 
-	path="$(echo $entry | cut -d ':' -f 1)#$fragment"
+	path = entry.split(':')[0]
+	path << '#'
+	path << fragment
 
-	if echo $fragment | grep -q ':'	# a class is not namespaced
-	then type='Method'
-	else type='Class'
-	fi
+	type = fragment.include?(':') ? 'Method' : 'Class'	# a class is not namespaced
+
+	puts "name: #{name}"
+	puts "path: #{path}"
+	puts "type: #{type}"
 
 	# TODO: handle static methods
 	# They are spottable as the method name repeats the class name. Ex: String.String-from
@@ -46,18 +42,9 @@ function normalizeEntry {
 	# - dollar / dollars -> $ / $$
 
 	# TODO: should DOMEvent be aliased to Event, as in the official doc listing?
-}
+end
 
-
-disableSpaceAsSeparator	# ensure loop beneath is over lines, not words
-
-for entry in $(grep '{#' --recursive $SOURCE_FOLDER)	# MooTools docs are nicely annotated with their unique anchor reference
-do
-	normalizeEntry $entry
-	echo "name: $name"
-	echo "type: $type"
-	echo "path: $path"
-	echo
-done
-
-restoreSeparators
+`grep '{#' --recursive mootools-core/Docs`.each_line do |entry|	# MooTools docs are nicely annotated with their unique anchor reference
+	normalize entry
+	puts
+end

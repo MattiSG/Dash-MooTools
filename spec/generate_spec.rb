@@ -75,4 +75,16 @@ describe "#normalize" do
 		it_should_behave_like 'rejected'
 	end
 
+	context 'Deprecated Browser.Engine' do
+		let(:data)		{ 'mootools-core/Docs/Browser/Browser.md:Deprecated {#Deprecated}' }
+
+		let(:namespace)	{ nil }
+		let(:symbol)	{ 'Browser.Engine' }
+		let(:type)		{ 'Object' }
+		let(:path)		{ 'mootools-core/Docs/Browser/Browser.md' }
+		let(:fragment)	{ '#Deprecated' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

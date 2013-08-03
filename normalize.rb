@@ -4,7 +4,12 @@ BLACKLISTED_FRAGMENTS = [
 ]
 
 OVERRIDDEN_TYPES = {
-	'#Type' => 'Guide'
+	'#Type' => 'Guide',
+	'#Deprecated' => 'Object'
+}
+
+OVERRIDDEN_SYMBOLS = {
+	'#Deprecated' => 'Browser.Engine'
 }
 
 def normalize(entry)
@@ -16,9 +21,12 @@ def apply_overrides(data)
 	return nil if is_blacklisted data
 
 	fragment = data[:fragment]
-	overridden_type = OVERRIDDEN_TYPES[fragment]
 
-	data[:type] = overridden_type if overridden_type
+	overridden_type		= OVERRIDDEN_TYPES[fragment]
+	overridden_symbol	= OVERRIDDEN_SYMBOLS[fragment]
+
+	data[:type]		= overridden_type if overridden_type
+	data[:symbol]	= overridden_symbol if overridden_symbol
 
 	data
 end
@@ -49,7 +57,6 @@ def parse(entry)
 	# TODO: values to treat specifically include:
 	# - Type.Generics (not a method)
 	# - Browser (object of objects)
-	# - Deprecated
 	# - Cookie-options
 	# - Number-Math
 	# - Element-Properties

@@ -9,16 +9,16 @@ def normalize(entry)
 	# entry.match(/([A-Za-z/-]+)\.md:([A-Za-z]\ )?([A-Za-z]+):[^{]{#[^:]+}/)
 	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z ]+\ )?([^:]+)([^{]*){#(.+)}/) do
 		path = $1
-		class_name = $2
-		type = $3.strip
+		class_name = $2 && $2.strip
+		type = $3
 		$4
 		$5
 		$6
 
 		{
-			path: path,
-			class_name: class_name,
-			type: type
+			path:		path,
+			class_name:	class_name,
+			type:		type
 		}
 	end
 

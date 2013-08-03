@@ -7,6 +7,6 @@ describe "#normalize" do
 	context 'DOMEvent constructor' do
 		let(:data) { 'mootools-core/Docs/Types/DOMEvent.md:DOMEvent Method: constructor {#DOMEvent:constructor}' }
 
-		it { should eq path: 'mootools-core/Docs/Types/DOMEvent.md', class_name: 'DOMEvent ', type: 'Method' }
+		it { should eq path: 'mootools-core/Docs/Types/DOMEvent.md', class_name: 'DOMEvent', type: 'Method' }
 	end
 end

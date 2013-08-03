@@ -1,4 +1,4 @@
-require "#{File.dirname(__FILE__)}/../generate.rb"
+require "#{File.dirname(__FILE__)}/../normalize.rb"
 
 describe "#normalize" do
 	

@@ -10,6 +10,7 @@ OVERRIDDEN_TYPES = {
 }
 
 OVERRIDDEN_SYMBOLS = {
+	'#Type' => 'Types',
 	'#Deprecated' => 'Browser.Engine',
 	'#Type:generics' => 'Generics'
 }

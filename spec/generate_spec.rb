@@ -55,7 +55,7 @@ describe "#normalize" do
 	context 'Type guide' do
 		let(:data)		{ 'mootools-core/Docs/Core/Core.md:### Type {#Type}' }
 		let(:namespace)	{ nil }
-		let(:symbol)	{ '' }
+		let(:symbol)	{ 'Types' }
 		let(:type)		{ 'Guide' }
 		let(:path)		{ 'mootools-core/Docs/Core/Core.md' }
 		let(:fragment)	{ '#Type' }

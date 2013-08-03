@@ -3,14 +3,14 @@ def normalize(entry)
 	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z ]+\ )?([^:]+)[:\ ]*([^{]*){(#.+)}/) do
 		#         ^$1^^             ^^^^^$2^^^^^   ^$3^^        ^$4^^   ^$5
 		path = $1
-		class_name = $2.strip if $2
+		namespace = $2.strip if $2
 		type = $3
 		symbol = $4.strip
 		fragment = $5
 
 		{
 			path:		path,
-			class_name:	class_name,
+			namespace:	namespace,
 			type:		type,
 			symbol:		symbol,
 			fragment:	fragment

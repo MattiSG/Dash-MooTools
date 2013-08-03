@@ -69,4 +69,10 @@ describe "#normalize" do
 		it_should_behave_like 'rejected'
 	end
 
+	context 'Deprecated functions headline' do
+		let(:data) { 'mootools-core/Docs/Core/Core.md:Deprecated Functions {#Deprecated-Functions}' }
+
+		it_should_behave_like 'rejected'
+	end
+
 end

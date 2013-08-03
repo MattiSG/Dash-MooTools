@@ -1,5 +1,6 @@
 BLACKLISTED_FRAGMENTS = [
-	'#Core'
+	'#Core',
+	'#Deprecated-Functions'
 ]
 
 OVERRIDDEN_TYPES = {
@@ -49,7 +50,6 @@ def parse(entry)
 	# - Type.Generics (not a method)
 	# - Browser (object of objects)
 	# - Deprecated
-	# - Deprecated-Functions (remove? if not, prefix with `$` as when exposed)
 	# - Cookie-options
 	# - Number-Math
 	# - Element-Properties

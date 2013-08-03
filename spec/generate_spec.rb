@@ -10,6 +10,12 @@ describe "#normalize" do
 		end
 	end
 
+	shared_examples 'rejected' do
+		it 'should reject the entry' do
+			subject.should be_nil
+		end
+	end
+
 	context 'DOMEvent constructor' do
 		let(:data) { 'mootools-core/Docs/Types/DOMEvent.md:DOMEvent Method: constructor {#DOMEvent:constructor}' }
 
@@ -55,6 +61,12 @@ describe "#normalize" do
 		let(:fragment)	{ '#Type' }
 
 		it_should_behave_like 'parser'
+	end
+
+	context 'Core' do
+		let(:data) { 'mootools-core/Docs/Core/Core.md:# Type: Core {#Core}' }
+
+		it_should_behave_like 'rejected'
 	end
 
 end

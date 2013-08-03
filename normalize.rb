@@ -1,3 +1,7 @@
+BLACKLISTED_FRAGMENTS = [
+	'#Core'
+]
+
 OVERRIDDEN_TYPES = {
 	'#Type' => 'Guide'
 }
@@ -8,12 +12,18 @@ end
 
 
 def apply_overrides(data)
+	return nil if is_blacklisted data
+
 	fragment = data[:fragment]
 	overridden_type = OVERRIDDEN_TYPES[fragment]
 
 	data[:type] = overridden_type if overridden_type
 
 	data
+end
+
+def is_blacklisted(data)
+	BLACKLISTED_FRAGMENTS.include? data[:fragment]
 end
 
 
@@ -36,7 +46,6 @@ def parse(entry)
 	end
 
 	# TODO: values to treat specifically include:
-	# - Core (present as global)
 	# - Type.Generics (not a method)
 	# - Browser (object of objects)
 	# - Deprecated

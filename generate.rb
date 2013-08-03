@@ -10,6 +10,9 @@ SOURCE_FOLDER = 'mootools-core/Docs'
 
 `grep '{#' --recursive #{SOURCE_FOLDER}`.each_line do |entry|	# MooTools docs are nicely annotated with their unique anchor reference
 	data = normalize entry
+
+	next if data.nil?
+
 	puts '----------------'
 	puts entry
 	data.each do |key, value|

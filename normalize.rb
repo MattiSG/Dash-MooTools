@@ -17,9 +17,6 @@ def normalize(entry)
 		}
 	end
 
-	# TODO: handle static methods
-	# They are spottable as the method name repeats the class name. Ex: String.String-from
-
 	# TODO: values to treat specifically include:
 	# - Core (present as global)
 	# - Type.Generics (not a method)

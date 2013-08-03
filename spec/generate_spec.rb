@@ -34,4 +34,16 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'static methods' do
+		let(:data)		{ 'mootools-core/Docs/Types/String.md:Function: String.from {#String:String-from}' }
+
+		let(:path)		{ 'mootools-core/Docs/Types/String.md' }
+		let(:namespace)	{ nil }
+		let(:type)		{ 'Function' }
+		let(:symbol)	{ 'String.from' }	# this is not exact, it could be in the 'String' namespace, but in the end, you'll look for it the same way
+		let(:fragment)	{ '#String:String-from' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

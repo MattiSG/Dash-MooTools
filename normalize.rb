@@ -5,11 +5,13 @@ BLACKLISTED_FRAGMENTS = [
 
 OVERRIDDEN_TYPES = {
 	'#Type' => 'Guide',
-	'#Deprecated' => 'Object'
+	'#Deprecated' => 'Object',
+	'#Type:generics' => 'Guide'
 }
 
 OVERRIDDEN_SYMBOLS = {
-	'#Deprecated' => 'Browser.Engine'
+	'#Deprecated' => 'Browser.Engine',
+	'#Type:generics' => 'Generics'
 }
 
 def normalize(entry)
@@ -55,7 +57,6 @@ def parse(entry)
 	end
 
 	# TODO: values to treat specifically include:
-	# - Type.Generics (not a method)
 	# - Browser (object of objects)
 	# - Cookie-options
 	# - Number-Math

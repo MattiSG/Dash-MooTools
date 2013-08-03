@@ -63,6 +63,17 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Generics guide' do
+		let(:data)		{ 'mootools-core/Docs/Core/Core.md:## Generics {#Type:generics}' }
+		let(:namespace)	{ nil }
+		let(:symbol)	{ 'Generics' }
+		let(:type)		{ 'Guide' }
+		let(:path)		{ 'mootools-core/Docs/Core/Core.md' }
+		let(:fragment)	{ '#Type:generics' }
+
+		it_should_behave_like 'parser'
+	end
+
 	context 'Core' do
 		let(:data) { 'mootools-core/Docs/Core/Core.md:# Type: Core {#Core}' }
 

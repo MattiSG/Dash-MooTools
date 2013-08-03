@@ -1,22 +1,26 @@
 #!/usr/bin/env ruby
 
+SOURCE_FOLDER = 'mootools-core/Docs'
 
 # Example entry:
 # ./mootools-core/Docs/Types/String.md:String method: clean {#String:clean}
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^ ^^^^^^^  ^^^^^^ ^^^^^
 def normalize(entry)
-	fragment = entry.split('{')[1].tr('#}', '')
+	# entry.match(/([A-Za-z/-]+)\.md:([A-Za-z]\ )?([A-Za-z]+):[^{]{#[^:]+}/)
+	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z ]+\ )?([^:]+)([^{]*){#(.+)}/) do
+		path = $1
+		class_name = $2
+		type = $3.strip
+		$4
+		$5
+		$6
 
-	name = fragment.tr(':', '.')	# replace namespace marker with method-accessor syntax
-
-	path = entry.split(':')[0]
-	path << '#'
-	path << fragment
-
-	type = fragment.include?(':') ? 'Method' : 'Class'	# a class is not namespaced
-
-	puts "name: #{name}"
-	puts "path: #{path}"
-	puts "type: #{type}"
+		{
+			path: path,
+			class_name: class_name,
+			type: type
+		}
+	end
 
 	# TODO: handle static methods
 	# They are spottable as the method name repeats the class name. Ex: String.String-from
@@ -44,7 +48,11 @@ def normalize(entry)
 	# TODO: should DOMEvent be aliased to Event, as in the official doc listing?
 end
 
-`grep '{#' --recursive mootools-core/Docs`.each_line do |entry|	# MooTools docs are nicely annotated with their unique anchor reference
-	normalize entry
-	puts
+`grep '{#' --recursive #{SOURCE_FOLDER}`.each_line do |entry|	# MooTools docs are nicely annotated with their unique anchor reference
+	data = normalize entry
+	puts '----------------'
+	puts entry
+	data.each do |key, value|
+		puts "#{key}: #{value}"
+	end
 end

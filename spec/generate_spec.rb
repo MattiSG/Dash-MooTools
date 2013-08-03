@@ -46,4 +46,15 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Type guide' do
+		let(:data)		{ 'mootools-core/Docs/Core/Core.md:### Type {#Type}' }
+		let(:namespace)	{ nil }
+		let(:symbol)	{ '' }
+		let(:type)		{ 'Guide' }
+		let(:path)		{ 'mootools-core/Docs/Core/Core.md' }
+		let(:fragment)	{ '#Type' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

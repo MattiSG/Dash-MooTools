@@ -1,5 +1,23 @@
+OVERRIDDEN_TYPES = {
+	'#Type' => 'Guide'
+}
+
 def normalize(entry)
-	# entry.match(/([A-Za-z/-]+)\.md:([A-Za-z]\ )?([A-Za-z]+):[^{]{#[^:]+}/)
+	apply_overrides parse entry
+end
+
+
+def apply_overrides(data)
+	fragment = data[:fragment]
+	overridden_type = OVERRIDDEN_TYPES[fragment]
+
+	data[:type] = overridden_type if overridden_type
+
+	data
+end
+
+
+def parse(entry)
 	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z ]+\ )?([^:]+)[:\ ]*([^{]*){(#.+)}/) do
 		#         ^$1^^             ^^^^^$2^^^^^   ^$3^^        ^$4^^   ^$5
 		path = $1

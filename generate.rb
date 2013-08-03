@@ -13,6 +13,6 @@ SOURCE_FOLDER = 'mootools-core/Docs'
 	puts '----------------'
 	puts entry
 	data.each do |key, value|
-		puts "#{key}: #{value}"
+		puts "#{key.to_s.rjust 15}: #{value}"
 	end
 end

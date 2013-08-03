@@ -9,10 +9,10 @@ def normalize(entry)
 		fragment = $5
 
 		{
-			path:		path,
 			namespace:	namespace,
-			type:		type,
 			symbol:		symbol,
+			type:		type,
+			path:		path,
 			fragment:	fragment
 		}
 	end

@@ -184,5 +184,12 @@ describe "#normalize" do
 		let(:fragment)	{ '#Window:dollar' }
 
 		it_should_behave_like 'parser'
-   end
+	end
+
+	context 'Window as a type' do
+		let(:data) { 'mootools-core/Docs/Element/Element.md:Type: Window {#Window}' }
+
+		it_should_behave_like 'rejected'
+	end
+
 end

@@ -7,13 +7,15 @@ OVERRIDDEN_TYPES = {
 	'#Type' => 'Guide',
 	'#Deprecated' => 'Object',
 	'#Type:generics' => 'Guide',
-	/#Fx-Transitions/ => 'Function'
+	/#Fx-Transitions/ => 'Function',
+	/:constructor$/ => 'Constructor'
 }
 
 OVERRIDDEN_SYMBOLS = {
 	'#Type' => 'Types',
 	'#Deprecated' => 'Browser.Engine',
-	'#Type:generics' => 'Generics'
+	'#Type:generics' => 'Generics',
+	/:constructor$/ => nil
 }
 
 def normalize(entry)
@@ -69,7 +71,6 @@ def parse(entry)
 	# - Element-Events
 	# - Request.send-aliases
 	# - Slick stuff are no methods, they are “selectors”
-	# - constructors (should be of type constructor, and the method name should probably not be "constructor")
 	# - Window (should not be namespaced in "window" as offered as global)
 	# - dollar / dollars -> $ / $$
 

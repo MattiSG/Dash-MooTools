@@ -21,9 +21,9 @@ describe "#normalize" do
 
 		let(:path)		{ 'mootools-core/Docs/Types/DOMEvent.md' }
 		let(:namespace)	{ 'DOMEvent' }
-		let(:type)		{ 'Method' }
+		let(:type)		{ 'Constructor' }
 		let(:fragment)	{ '#DOMEvent:constructor' }
-		let(:symbol)	{ 'constructor' }
+		let(:symbol)	{ nil }
 
 		it_should_behave_like 'parser'
 	end
@@ -134,7 +134,6 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
-
 	context 'Fx.Morph.set' do
 		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Morph.md:Fx.Morph Method: set {#Fx-Morph:set}' }
 
@@ -143,6 +142,18 @@ describe "#normalize" do
 		let(:type)		{ 'Method' }
 		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Morph.md' }
 		let(:fragment)	{ '#Fx-Morph:set' }
+
+		it_should_behave_like 'parser'
+	end
+
+	context 'constructors' do
+		let(:data) { 'mootools-core/Docs/Fx/Fx.Tween.md:Fx.Tween Method: constructor {#Fx-Tween:constructor}' }
+
+		let(:namespace)	{ 'Fx.Tween' }
+		let(:symbol)	{ nil }	# this is not exact, but once concatenated with namespace, it is the same
+		let(:type)		{ 'Constructor' }
+		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Tween.md' }
+		let(:fragment)	{ '#Fx-Tween:constructor' }
 
 		it_should_behave_like 'parser'
 	end

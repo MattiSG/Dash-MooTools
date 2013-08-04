@@ -122,4 +122,29 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Fx.Morph' do
+		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Morph.md:Class: Fx.Morph {#Fx-Morph}' }
+
+		let(:namespace)	{ nil }
+		let(:symbol)	{ 'Fx.Morph' }
+		let(:type)		{ 'Class' }
+		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Morph.md' }
+		let(:fragment)	{ '#Fx-Morph' }
+
+		it_should_behave_like 'parser'
+	end
+
+
+	context 'Fx.Morph.set' do
+		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Morph.md:Fx.Morph Method: set {#Fx-Morph:set}' }
+
+		let(:namespace)	{ 'Fx.Morph' }
+		let(:symbol)	{ 'set' }
+		let(:type)		{ 'Method' }
+		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Morph.md' }
+		let(:fragment)	{ '#Fx-Morph:set' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

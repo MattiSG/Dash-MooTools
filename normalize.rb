@@ -68,8 +68,6 @@ def parse(entry)
 	# - Element-NativeEvents
 	# - Element-Events
 	# - Request.send-aliases
-	# - Fx.Tween
-	# - Fx.Morph
 	# - Slick stuff are no methods, they are “selectors”
 	# - constructors (should be of type constructor, and the method name should probably not be "constructor")
 	# - Window (should not be namespaced in "window" as offered as global)

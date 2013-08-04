@@ -93,7 +93,6 @@ def parse(entry)
 	# - Request.send-aliases
 	# - Slick stuff are no methods, they are “selectors”
 	# - Window (should not be namespaced in "window" as offered as global)
-	# - dollar / dollars -> $ / $$
 
 	# TODO: should DOMEvent be aliased to Event, as in the official doc listing?
 end

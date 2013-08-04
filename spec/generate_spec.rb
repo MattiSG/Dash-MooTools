@@ -158,7 +158,6 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
-
 	context 'Cookie options as a block of its own' do
 		let(:data) { 'mootools-core/Docs/Utilities/Cookie.md:## Options: {#Cookie-options}' }
 
@@ -175,4 +174,15 @@ describe "#normalize" do
 
 		it_should_behave_like 'parser'
 	end
+
+	context '$ function' do
+		let(:data)		{ 'mootools-core/Docs/Element/Element.md:Function: $ {#Window:dollar}' }
+
+		let(:symbol)	{ '$' }
+		let(:type)		{ 'Function' }
+		let(:path)		{ 'mootools-core/Docs/Element/Element.md' }
+		let(:fragment)	{ '#Window:dollar' }
+
+		it_should_behave_like 'parser'
+   end
 end

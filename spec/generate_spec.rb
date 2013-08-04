@@ -98,4 +98,16 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Classes in class namespaces' do
+		let(:data)		{ 'mootools-core/Docs/Request/Request.JSON.md:Class: Request.JSON {#Request-JSON}' }
+
+		let(:namespace)	{ nil }	# this is not exact, it could be in the 'Request' namespace, but in the end, you'll look for it the same way
+		let(:symbol)	{ 'Request.JSON' }
+		let(:type)		{ 'Class' }
+		let(:path)		{ 'mootools-core/Docs/Request/Request.JSON.md' }
+		let(:fragment)	{ '#Request-JSON' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

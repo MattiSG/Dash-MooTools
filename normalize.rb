@@ -58,15 +58,13 @@ def parse(entry)
 	end
 
 	# TODO: values to treat specifically include:
-	# - Browser (object of objects)
+	# - Browser.* (types)
 	# - Cookie-options
 	# - Number-Math
 	# - Element-Properties
 	# - Element-NativeEvents
 	# - Element-Events
 	# - Request.send-aliases
-	# - Request-JSON
-	# - Request-HTML
 	# - Fx-Transitions (hyphenated name + type (object))
 	# - Slick stuff are no methods, they are “selectors”
 	# - constructors (should be of type constructor, and the method name should probably not be "constructor")

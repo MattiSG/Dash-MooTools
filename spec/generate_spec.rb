@@ -229,4 +229,15 @@ describe "#normalize" do
 
 	end
 
+	context 'Browser sub-objects' do
+		let(:data)		{ 'mootools-core/Docs/Browser/Browser.md:Browser.Features {#Browser:Browser-Features}' }
+
+		let(:symbol)	{ 'Browser.Features' }
+		let(:type)		{ 'Object' }
+		let(:path)		{ 'mootools-core/Docs/Browser/Browser.md' }
+		let(:fragment)	{ '#Browser:Browser-Features' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

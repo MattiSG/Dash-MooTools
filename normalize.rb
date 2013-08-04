@@ -20,7 +20,8 @@ OVERRIDES = {
 		/:constructor$/ => 'Constructor',
 		'#Number-Math' => 'Guide',
 		/^#Slick$/ => 'Guide',
-		/^#Slick:[^S]/ => 'Notation'	# selectors should be listed as notations; "Slick.definePseudo" is properly recognized as a function; what sets its fragment apart is it repeats Slick, as it is a static method (Slick:Slick-definePseudo)
+		/^#Slick:[^S]/ => 'Notation',	# selectors should be listed as notations; "Slick.definePseudo" is properly recognized as a function; what sets its fragment apart is it repeats Slick, as it is a static method (Slick:Slick-definePseudo)
+		/#Browser:Browser-.*/ => 'Object'
 	},
 	symbol: {
 		'#Type' => 'Types',
@@ -78,12 +79,12 @@ end
 
 
 def parse(entry)
-	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z. ]+\ )?([^:]+)[:\ ]*([^{]*){(#.+)}/) do
-		#         ^$1^^             ^^^^^$2^^^^^^   ^$3^^        ^$4^^   ^$5
+	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z. ]+ )?([^: ]+:)?[ ]*([^{]+){(#.+)}/) do
+		#         ^$1^^             ^^^^^$2^^^^^   ^^^$3^^       ^$4^^   ^$5
 		path = $1
 		namespace = $2.strip if $2
-		type = $3
-		symbol = $4.strip
+		type = $3.chop if $3	# remove the separating colon
+		symbol = $4.strip	#TODO: this can be removed by adding a space between $4 and $5 matchers in the regexp
 		fragment = $5
 
 		{
@@ -96,7 +97,6 @@ def parse(entry)
 	end
 
 	# TODO: values to treat specifically include:
-	# - Browser.* (types)
 	# - Request.send-aliases
 
 	# TODO: should DOMEvent be aliased to Event, as in the official doc listing?

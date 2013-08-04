@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "./normalize.rb"
+require "./additions.rb"
 
 SOURCE_FOLDER = 'mootools-core/Docs'
 
@@ -15,6 +16,16 @@ SOURCE_FOLDER = 'mootools-core/Docs'
 
 	puts '----------------'
 	puts "data: #{entry}"
+	data.each do |key, value|
+		puts "#{key.to_s.rjust 15}: #{value}"
+	end
+end
+
+ADDITIONS.each do |entry|
+	data = fully_qualify_symbol apply_overrides entry
+
+	puts '----------------'
+	puts "data: ADDITIONS"
 	data.each do |key, value|
 		puts "#{key.to_s.rjust 15}: #{value}"
 	end

@@ -96,8 +96,5 @@ def parse(entry)
 		}
 	end
 
-	# TODO: values to treat specifically include:
-	# - Request.send-aliases
-
 	# TODO: should DOMEvent be aliased to Event, as in the official doc listing?
 end

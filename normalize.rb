@@ -19,7 +19,8 @@ OVERRIDES = {
 		/#Fx-Transitions/ => 'Function',
 		/:constructor$/ => 'Constructor',
 		'#Number-Math' => 'Guide',
-		'#Slick' => 'Guide'
+		/^#Slick$/ => 'Guide',
+		/^#Slick:[^S]/ => 'Notation'	# selectors should be listed as notations; "Slick.definePseudo" is properly recognized as a function; what sets its fragment apart is it repeats Slick, as it is a static method (Slick:Slick-definePseudo)
 	},
 	symbol: {
 		'#Type' => 'Types',
@@ -27,7 +28,7 @@ OVERRIDES = {
 		'#Type:generics' => 'Generics',
 		/:constructor$/ => nil,
 		'#Number-Math' => 'Math',
-		'#Slick' => 'Slick'
+		/^#Slick$/ => 'Slick'
 	},
 	namespace: {
 		'#Number-Math' => 'Number'
@@ -97,7 +98,6 @@ def parse(entry)
 	# TODO: values to treat specifically include:
 	# - Browser.* (types)
 	# - Request.send-aliases
-	# - Slick stuff are no methods, they are “selectors”
 
 	# TODO: should DOMEvent be aliased to Event, as in the official doc listing?
 end

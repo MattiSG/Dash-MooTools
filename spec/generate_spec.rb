@@ -192,15 +192,41 @@ describe "#normalize" do
 		it_should_behave_like 'rejected'
 	end
 
-	context 'Slick main object' do
-		let(:data)		{ 'mootools-core/Docs/Slick/Slick.md:Slick {#Slick}' }
+	describe 'Slick' do
 
-		let(:symbol)	{ 'Slick' }
-		let(:type)		{ 'Guide' }
-		let(:path)		{ 'mootools-core/Docs/Slick/Slick.md' }
-		let(:fragment)	{ '#Slick' }
+		context 'main object' do
+			let(:data)		{ 'mootools-core/Docs/Slick/Slick.md:Slick {#Slick}' }
 
-		it_should_behave_like 'parser'
+			let(:symbol)	{ 'Slick' }
+			let(:type)		{ 'Guide' }
+			let(:path)		{ 'mootools-core/Docs/Slick/Slick.md' }
+			let(:fragment)	{ '#Slick' }
+
+			it_should_behave_like 'parser'
+		end
+
+		context 'selectors without hyphens' do
+			let(:data)		{ 'mootools-core/Docs/Slick/Slick.md:Selector: Next Siblings (\'~\') {#Slick:nextSiblings}' }
+
+			let(:symbol)	{ 'Next Siblings (\'~\')' }
+			let(:type)		{ 'Notation' }
+			let(:path)		{ 'mootools-core/Docs/Slick/Slick.md' }
+			let(:fragment)	{ '#Slick:nextSiblings' }
+
+			it_should_behave_like 'parser'
+		end
+
+		context 'selectors with hyphens' do
+			let(:data) { 'mootools-core/Docs/Slick/Slick.md:Selector: nth-child {#Slick:nth-child}' }
+
+			let(:symbol) { 'nth-child' }
+			let(:type) { 'Notation' }
+			let(:path) { 'mootools-core/Docs/Slick/Slick.md' }
+			let(:fragment) { '#Slick:nth-child' }
+
+			it_should_behave_like 'parser'
+		end
+
 	end
 
 end

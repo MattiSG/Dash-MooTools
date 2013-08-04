@@ -192,4 +192,15 @@ describe "#normalize" do
 		it_should_behave_like 'rejected'
 	end
 
+	context 'Slick main object' do
+		let(:data)		{ 'mootools-core/Docs/Slick/Slick.md:Slick {#Slick}' }
+
+		let(:symbol)	{ 'Slick' }
+		let(:type)		{ 'Guide' }
+		let(:path)		{ 'mootools-core/Docs/Slick/Slick.md' }
+		let(:fragment)	{ '#Slick' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

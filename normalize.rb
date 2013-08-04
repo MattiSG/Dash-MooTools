@@ -18,14 +18,16 @@ OVERRIDES = {
 		'#Type:generics' => 'Guide',
 		/#Fx-Transitions/ => 'Function',
 		/:constructor$/ => 'Constructor',
-		'#Number-Math' => 'Guide'
+		'#Number-Math' => 'Guide',
+		'#Slick' => 'Guide'
 	},
 	symbol: {
 		'#Type' => 'Types',
 		'#Deprecated' => 'Browser.Engine',
 		'#Type:generics' => 'Generics',
 		/:constructor$/ => nil,
-		'#Number-Math' => 'Math'
+		'#Number-Math' => 'Math',
+		'#Slick' => 'Slick'
 	},
 	namespace: {
 		'#Number-Math' => 'Number'

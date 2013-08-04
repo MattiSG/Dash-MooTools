@@ -158,4 +158,16 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Object in a namespace' do
+		let(:data)		{ 'mootools-core/Docs/Element/Element.Event.md:Object: Element.NativeEvents {#Element-NativeEvents}' }
+
+		let(:namespace)	{ nil }	# this is not exact, but once concatenated with the symbol, it is the same
+		let(:symbol)	{ 'Element.NativeEvents' }
+		let(:type)		{ 'Object' }
+		let(:path)		{ 'mootools-core/Docs/Element/Element.Event.md' }
+		let(:fragment)	{ '#Element-NativeEvents' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

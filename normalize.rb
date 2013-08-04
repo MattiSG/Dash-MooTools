@@ -66,9 +66,6 @@ def parse(entry)
 	# - Browser.* (types)
 	# - Cookie-options
 	# - Number-Math
-	# - Element-Properties
-	# - Element-NativeEvents
-	# - Element-Events
 	# - Request.send-aliases
 	# - Slick stuff are no methods, they are “selectors”
 	# - Window (should not be namespaced in "window" as offered as global)

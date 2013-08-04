@@ -6,7 +6,8 @@ BLACKLISTED_FRAGMENTS = [
 OVERRIDDEN_TYPES = {
 	'#Type' => 'Guide',
 	'#Deprecated' => 'Object',
-	'#Type:generics' => 'Guide'
+	'#Type:generics' => 'Guide',
+	/#Fx-Transitions/ => 'Function'
 }
 
 OVERRIDDEN_SYMBOLS = {
@@ -25,11 +26,13 @@ def apply_overrides(data)
 
 	fragment = data[:fragment]
 
-	overridden_type		= OVERRIDDEN_TYPES[fragment]
-	overridden_symbol	= OVERRIDDEN_SYMBOLS[fragment]
+	OVERRIDDEN_TYPES.each do |matcher, type|
+		data[:type] = type if fragment.index matcher
+	end
 
-	data[:type]		= overridden_type if overridden_type
-	data[:symbol]	= overridden_symbol if overridden_symbol
+	OVERRIDDEN_SYMBOLS.each do |matcher, symbol|
+		data[:symbol] = symbol if fragment.index matcher
+	end
 
 	data
 end
@@ -40,8 +43,8 @@ end
 
 
 def parse(entry)
-	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z ]+\ )?([^:]+)[:\ ]*([^{]*){(#.+)}/) do
-		#         ^$1^^             ^^^^^$2^^^^^   ^$3^^        ^$4^^   ^$5
+	entry.match(/([^:]+):[^A-Za-z]*([A-Za-z. ]+\ )?([^:]+)[:\ ]*([^{]*){(#.+)}/) do
+		#         ^$1^^             ^^^^^$2^^^^^^   ^$3^^        ^$4^^   ^$5
 		path = $1
 		namespace = $2.strip if $2
 		type = $3
@@ -65,7 +68,8 @@ def parse(entry)
 	# - Element-NativeEvents
 	# - Element-Events
 	# - Request.send-aliases
-	# - Fx-Transitions (hyphenated name + type (object))
+	# - Fx.Tween
+	# - Fx.Morph
 	# - Slick stuff are no methods, they are “selectors”
 	# - constructors (should be of type constructor, and the method name should probably not be "constructor")
 	# - Window (should not be namespaced in "window" as offered as global)

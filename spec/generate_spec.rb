@@ -110,4 +110,16 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Fx.Transitions' do
+		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Transitions.md:Fx.Transitions Method: linear {#Fx-Transitions:linear}' }
+
+		let(:namespace)	{ 'Fx.Transitions' }
+		let(:symbol)	{ 'linear' }
+		let(:type)		{ 'Function' }
+		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Transitions.md' }
+		let(:fragment)	{ '#Fx-Transitions:linear' }
+
+		it_should_behave_like 'parser'
+	end
+
 end

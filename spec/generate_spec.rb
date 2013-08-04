@@ -6,7 +6,7 @@ describe "#normalize" do
 
 	shared_examples 'parser' do
 		it 'should properly parse data' do
-			subject.should eq path: path, namespace: namespace, type: type, fragment: fragment, symbol: symbol
+			subject.should eq path: path, type: type, fragment: fragment, symbol: symbol
 		end
 	end
 
@@ -20,10 +20,9 @@ describe "#normalize" do
 		let(:data) { 'mootools-core/Docs/Types/DOMEvent.md:DOMEvent Method: constructor {#DOMEvent:constructor}' }
 
 		let(:path)		{ 'mootools-core/Docs/Types/DOMEvent.md' }
-		let(:namespace)	{ 'DOMEvent' }
 		let(:type)		{ 'Constructor' }
 		let(:fragment)	{ '#DOMEvent:constructor' }
-		let(:symbol)	{ nil }
+		let(:symbol)	{ 'DOMEvent' }
 
 		it_should_behave_like 'parser'
 	end
@@ -32,7 +31,6 @@ describe "#normalize" do
 		let(:data) { 'mootools-core/Docs/Utilities/JSON.md:# Object: JSON {#JSON}' }
 
 		let(:path)		{ 'mootools-core/Docs/Utilities/JSON.md' }
-		let(:namespace)	{ nil }
 		let(:type)		{ 'Object' }
 		let(:symbol)	{ 'JSON' }
 		let(:fragment)	{ '#JSON' }
@@ -44,9 +42,8 @@ describe "#normalize" do
 		let(:data)		{ 'mootools-core/Docs/Types/String.md:Function: String.from {#String:String-from}' }
 
 		let(:path)		{ 'mootools-core/Docs/Types/String.md' }
-		let(:namespace)	{ nil }
 		let(:type)		{ 'Function' }
-		let(:symbol)	{ 'String.from' }	# this is not exact, it could be in the 'String' namespace, but in the end, you'll look for it the same way
+		let(:symbol)	{ 'String.from' }
 		let(:fragment)	{ '#String:String-from' }
 
 		it_should_behave_like 'parser'
@@ -54,7 +51,6 @@ describe "#normalize" do
 
 	context 'Type guide' do
 		let(:data)		{ 'mootools-core/Docs/Core/Core.md:### Type {#Type}' }
-		let(:namespace)	{ nil }
 		let(:symbol)	{ 'Types' }
 		let(:type)		{ 'Guide' }
 		let(:path)		{ 'mootools-core/Docs/Core/Core.md' }
@@ -65,7 +61,6 @@ describe "#normalize" do
 
 	context 'Generics guide' do
 		let(:data)		{ 'mootools-core/Docs/Core/Core.md:## Generics {#Type:generics}' }
-		let(:namespace)	{ nil }
 		let(:symbol)	{ 'Generics' }
 		let(:type)		{ 'Guide' }
 		let(:path)		{ 'mootools-core/Docs/Core/Core.md' }
@@ -89,7 +84,6 @@ describe "#normalize" do
 	context 'Deprecated Browser.Engine' do
 		let(:data)		{ 'mootools-core/Docs/Browser/Browser.md:Deprecated {#Deprecated}' }
 
-		let(:namespace)	{ nil }
 		let(:symbol)	{ 'Browser.Engine' }
 		let(:type)		{ 'Object' }
 		let(:path)		{ 'mootools-core/Docs/Browser/Browser.md' }
@@ -101,7 +95,6 @@ describe "#normalize" do
 	context 'Classes in class namespaces' do
 		let(:data)		{ 'mootools-core/Docs/Request/Request.JSON.md:Class: Request.JSON {#Request-JSON}' }
 
-		let(:namespace)	{ nil }	# this is not exact, it could be in the 'Request' namespace, but in the end, you'll look for it the same way
 		let(:symbol)	{ 'Request.JSON' }
 		let(:type)		{ 'Class' }
 		let(:path)		{ 'mootools-core/Docs/Request/Request.JSON.md' }
@@ -113,8 +106,7 @@ describe "#normalize" do
 	context 'Fx.Transitions' do
 		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Transitions.md:Fx.Transitions Method: linear {#Fx-Transitions:linear}' }
 
-		let(:namespace)	{ 'Fx.Transitions' }
-		let(:symbol)	{ 'linear' }
+		let(:symbol)	{ 'Fx.Transitions.linear' }
 		let(:type)		{ 'Function' }
 		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Transitions.md' }
 		let(:fragment)	{ '#Fx-Transitions:linear' }
@@ -125,7 +117,6 @@ describe "#normalize" do
 	context 'Fx.Morph' do
 		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Morph.md:Class: Fx.Morph {#Fx-Morph}' }
 
-		let(:namespace)	{ nil }
 		let(:symbol)	{ 'Fx.Morph' }
 		let(:type)		{ 'Class' }
 		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Morph.md' }
@@ -137,8 +128,7 @@ describe "#normalize" do
 	context 'Fx.Morph.set' do
 		let(:data)		{ 'mootools-core/Docs/Fx/Fx.Morph.md:Fx.Morph Method: set {#Fx-Morph:set}' }
 
-		let(:namespace)	{ 'Fx.Morph' }
-		let(:symbol)	{ 'set' }
+		let(:symbol)	{ 'Fx.Morph.set' }
 		let(:type)		{ 'Method' }
 		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Morph.md' }
 		let(:fragment)	{ '#Fx-Morph:set' }
@@ -149,8 +139,7 @@ describe "#normalize" do
 	context 'constructors' do
 		let(:data) { 'mootools-core/Docs/Fx/Fx.Tween.md:Fx.Tween Method: constructor {#Fx-Tween:constructor}' }
 
-		let(:namespace)	{ 'Fx.Tween' }
-		let(:symbol)	{ nil }	# this is not exact, but once concatenated with namespace, it is the same
+		let(:symbol)	{ 'Fx.Tween' }
 		let(:type)		{ 'Constructor' }
 		let(:path)		{ 'mootools-core/Docs/Fx/Fx.Tween.md' }
 		let(:fragment)	{ '#Fx-Tween:constructor' }
@@ -161,7 +150,6 @@ describe "#normalize" do
 	context 'Object in a namespace' do
 		let(:data)		{ 'mootools-core/Docs/Element/Element.Event.md:Object: Element.NativeEvents {#Element-NativeEvents}' }
 
-		let(:namespace)	{ nil }	# this is not exact, but once concatenated with the symbol, it is the same
 		let(:symbol)	{ 'Element.NativeEvents' }
 		let(:type)		{ 'Object' }
 		let(:path)		{ 'mootools-core/Docs/Element/Element.Event.md' }
@@ -177,4 +165,14 @@ describe "#normalize" do
 		it_should_behave_like 'rejected'
 	end
 
+	context 'Number Math aliases' do
+		let(:data)		{ 'mootools-core/Docs/Types/Number.md:Math Methods {#Number-Math}' }
+
+		let(:symbol)	{ 'Number.Math' }
+		let(:type)		{ 'Guide' }
+		let(:path)		{ 'mootools-core/Docs/Types/Number.md' }
+		let(:fragment)	{ '#Number-Math' }
+
+		it_should_behave_like 'parser'
+	end
 end

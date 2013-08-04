@@ -4,37 +4,62 @@ BLACKLISTED_FRAGMENTS = [
 	'#Cookie-options'	# as a block of its own, it doesn't make sense: Cookie options should be available from the Cookie doc
 ]
 
-OVERRIDDEN_TYPES = {
-	'#Type' => 'Guide',
-	'#Deprecated' => 'Object',
-	'#Type:generics' => 'Guide',
-	/#Fx-Transitions/ => 'Function',
-	/:constructor$/ => 'Constructor'
+# First key depth is the value that is to be overridden after parsing.
+# Second key depth is the fragment that triggers the override, either as a String or as RegExp.
+# Value is the value to set.
+#
+# To understand the overrides, search for the fragment in the doc
+OVERRIDES = {
+	type: {
+		'#Type' => 'Guide',
+		'#Deprecated' => 'Object',
+		'#Type:generics' => 'Guide',
+		/#Fx-Transitions/ => 'Function',
+		/:constructor$/ => 'Constructor',
+		'#Number-Math' => 'Guide'
+	},
+	symbol: {
+		'#Type' => 'Types',
+		'#Deprecated' => 'Browser.Engine',
+		'#Type:generics' => 'Generics',
+		/:constructor$/ => nil,
+		'#Number-Math' => 'Math'
+	},
+	namespace: {
+		'#Number-Math' => 'Number'
+	}
 }
 
-OVERRIDDEN_SYMBOLS = {
-	'#Type' => 'Types',
-	'#Deprecated' => 'Browser.Engine',
-	'#Type:generics' => 'Generics',
-	/:constructor$/ => nil
-}
 
 def normalize(entry)
-	apply_overrides parse entry
+	fully_qualify_symbol apply_overrides parse entry
+end
+
+# Converts a namespace + symbol pair into a fully qualified symbol.
+# Due to how entry data format, the distinction may be blurry. Fully qualifying before exporting makes sure we don't return inconsistent data (e.g. nil in one value, the FQN in another).
+def fully_qualify_symbol(data)
+	return nil if ! data	# overrides could have rejected the data
+
+	namespace	= data.delete :namespace
+	symbol		= data[:symbol]
+
+	if namespace && symbol
+		data[:symbol] = "#{namespace}.#{symbol}"	# notice the dot
+	else	# at least one is nil, converted to the empty string
+		data[:symbol] = "#{namespace}#{symbol}"
+	end
+
+	data
 end
 
 
 def apply_overrides(data)
 	return nil if is_blacklisted data
 
-	fragment = data[:fragment]
-
-	OVERRIDDEN_TYPES.each do |matcher, type|
-		data[:type] = type if fragment.index matcher
-	end
-
-	OVERRIDDEN_SYMBOLS.each do |matcher, symbol|
-		data[:symbol] = symbol if fragment.index matcher
+	OVERRIDES.each do |property, overrides|
+		overrides.each do |matcher, value|
+			data[property] = value if data[:fragment].index matcher
+		end
 	end
 
 	data
@@ -65,7 +90,6 @@ def parse(entry)
 
 	# TODO: values to treat specifically include:
 	# - Browser.* (types)
-	# - Number-Math
 	# - Request.send-aliases
 	# - Slick stuff are no methods, they are “selectors”
 	# - Window (should not be namespaced in "window" as offered as global)

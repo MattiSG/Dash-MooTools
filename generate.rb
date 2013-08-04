@@ -14,7 +14,7 @@ SOURCE_FOLDER = 'mootools-core/Docs'
 	next if data.nil?
 
 	puts '----------------'
-	puts entry
+	puts "data: #{entry}"
 	data.each do |key, value|
 		puts "#{key.to_s.rjust 15}: #{value}"
 	end

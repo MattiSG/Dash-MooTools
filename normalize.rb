@@ -1,6 +1,7 @@
 BLACKLISTED_FRAGMENTS = [
-	'#Core',
-	'#Deprecated-Functions'
+	'#Core',	# this namespace is not visible, stuff inside it is made available globally
+	'#Deprecated-Functions',	# this is a warning block, it should not exist on its own
+	'#Cookie-options'	# as a block of its own, it doesn't make sense: Cookie options should be available from the Cookie doc
 ]
 
 OVERRIDDEN_TYPES = {
@@ -64,7 +65,6 @@ def parse(entry)
 
 	# TODO: values to treat specifically include:
 	# - Browser.* (types)
-	# - Cookie-options
 	# - Number-Math
 	# - Request.send-aliases
 	# - Slick stuff are no methods, they are “selectors”

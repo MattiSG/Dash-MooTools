@@ -170,4 +170,11 @@ describe "#normalize" do
 		it_should_behave_like 'parser'
 	end
 
+
+	context 'Cookie options as a block of its own' do
+		let(:data) { 'mootools-core/Docs/Utilities/Cookie.md:## Options: {#Cookie-options}' }
+
+		it_should_behave_like 'rejected'
+	end
+
 end

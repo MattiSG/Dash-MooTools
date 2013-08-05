@@ -1,6 +1,7 @@
-# This file defines additional, not-parsable data.
+# This file defines additional, not-parsed data.
 ADDITIONS = [
 	{
+		source:		'Additions',
 		namespace:	'Request',
 		symbol:		'post',
 		type:		'Method',
@@ -8,6 +9,7 @@ ADDITIONS = [
 		fragment:	'#Request:send-aliases'
 	},
 	{
+		source:		'Additions',
 		namespace:	'Request',
 		symbol:		'get',
 		type:		'Method',
@@ -15,6 +17,7 @@ ADDITIONS = [
 		fragment:	'#Request:send-aliases'
 	},
 	{
+		source:		'Additions',
 		namespace:	'Request',
 		symbol:		'put',
 		type:		'Method',
@@ -22,6 +25,7 @@ ADDITIONS = [
 		fragment:	'#Request:send-aliases'
 	},
 	{
+		source:		'Additions',
 		namespace:	'Request',
 		symbol:		'delete',
 		type:		'Method',

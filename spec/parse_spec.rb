@@ -1,15 +1,16 @@
 ROOT_FOLDER		= "#{File.dirname(__FILE__)}/.."
 SOURCE_FOLDER	= "#{ROOT_FOLDER}/mootools-core/Docs"
 
-require "#{ROOT_FOLDER}/normalize.rb"
+require_relative "../src/parse"
 
-describe "#normalize" do
 
-	subject { normalize data }
+describe "#parse" do
+
+	subject { parse data }
 
 	shared_examples 'parser' do
 		it 'should properly parse data' do
-			subject.should eq path: path, type: type, fragment: fragment, symbol: symbol
+			subject.should eq path: path, type: type, fragment: fragment, symbol: symbol, source: data
 		end
 	end
 
@@ -245,10 +246,10 @@ describe "#normalize" do
 
 end
 
-describe '#parse' do
+describe '#parse_entry' do
 	it 'should parse all entries' do
 		`grep '{#' --recursive #{SOURCE_FOLDER}`.each_line do |entry|
-			parsed = parse entry
+			parsed = parse_entry entry
 			parsed.should_not be_nil
 		end
 	end

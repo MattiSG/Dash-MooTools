@@ -48,6 +48,7 @@ puts ' done'
 
 print 'Generating database... '
 `cat #{INIT_FILE} | sqlite3 #{INDEX_FILE}`	# if we use the -init option of sqlite3, it is started as interactive and will never finish
+FileUtils.rm INIT_FILE
 puts 'done'
 
 

@@ -27,6 +27,7 @@ puts '==============='
 print 'Indexing'
 
 sql = []
+sql << 'DROP TABLE IF EXISTS searchIndex;'
 sql << 'CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);'
 sql << 'CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);'
 

@@ -11,7 +11,7 @@ INDEX_FILE = "#{DOCSET_RESOURCES}/docSet.dsidx"
 INIT_FILE = 'init.sql'
 
 
-Dir.glob("#{SOURCE_FOLDER}/*/**/*.md").each do |filename|
+Dir.glob("#{SOURCE_FOLDER}/**/*.md").each do |filename|
 	print "Converting #{filename}... "
 
 	html = Kramdown::Document.new(IO.read(filename)).to_html

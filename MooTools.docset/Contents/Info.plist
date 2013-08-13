@@ -10,5 +10,7 @@
 	<string>MooTools</string>
 	<key>isDashDocset</key>
 	<true/>
+	<key>dashIndexFilePath</key>
+	<string>Intro.html</string>
 </dict>
 </plist>

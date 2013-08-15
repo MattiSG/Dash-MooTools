@@ -96,6 +96,12 @@ describe "#parse" do
 		it_should_behave_like 'parser'
 	end
 
+	context 'Depreacted functions' do
+		let(:data)		{ 'mootools-core/Docs/Core/Core.md:Function: $chk {#Deprecated-Functions:chk}' }
+
+		it_should_behave_like 'rejected'
+	end
+
 	context 'Classes in class namespaces' do
 		let(:data)		{ 'mootools-core/Docs/Request/Request.JSON.md:Class: Request.JSON {#Request-JSON}' }
 
@@ -182,12 +188,14 @@ describe "#parse" do
 	context '$ function' do
 		let(:data)		{ 'mootools-core/Docs/Element/Element.md:Function: $ {#Window:dollar}' }
 
-		let(:symbol)	{ '$' }
-		let(:type)		{ 'Function' }
-		let(:path)		{ 'mootools-core/Docs/Element/Element.md' }
-		let(:fragment)	{ '#Window:dollar' }
+#	Uncomment below if you want to parse the deprecated `$` and `$$` global functions
+#		let(:symbol)	{ '$' }
+#		let(:type)		{ 'Function' }
+#		let(:path)		{ 'mootools-core/Docs/Element/Element.md' }
+#		let(:fragment)	{ '#Window:dollar' }
+#		it_should_behave_like 'parser'
 
-		it_should_behave_like 'parser'
+		it_should_behave_like 'rejected'
 	end
 
 	context 'Window as a type' do

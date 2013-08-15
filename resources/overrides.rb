@@ -1,7 +1,7 @@
 # This file defines hardcoded override values for some elements where the parser can't extract the proper data to use.
 #
 # First key depth is the value that is to be overridden after parsing.
-# Second key depth is the fragment that triggers the override, either as a String or as RegExp.
+# Second key depth is the fragment that triggers the override, either as a String or a RegExp.
 # Value is the value to set.
 #
 # To understand the overrides, search for the fragment in the doc.

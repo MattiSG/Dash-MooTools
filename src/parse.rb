@@ -63,5 +63,5 @@ end
 # @param	[Hash]		data	A parsed entry, as returned by #parse.
 # @return	[Boolean]	True if the given data set should NOT be indexed.
 def is_blacklisted(data)
-	BLACKLIST.include? data[:fragment]
+	!! BLACKLIST.reduce(false) { |memo, matcher| memo || data[:fragment].index(matcher) }
 end

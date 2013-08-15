@@ -1,9 +1,21 @@
-MooTools documentation generator for Dash
-=========================================
-
 This project is a parser and indexer for [MooTools](http://mootools.net) documentation.
 
-If you're interested in the documentation itself, you can install it in Dash by adding (Preferences → “Downloads” → `+`) the following feed: `http://mattischneider.fr/feeds/MooTools.xml`.
+Installing the MooTools docset in Dash
+=========================================
+
+![Installation instructions](https://raw.github.com/MattiSG/Dash-MooTools/master/publication/instructions.png)
+
+1. Open [Dash](http://kapeli.com/dash).
+2. Open up the Preferences.
+3. Go to the Downloads pane.
+4. Click on the `+` button (lower left).
+5. Paste: `http://mattischneider.fr/feeds/MooTools.xml`.
+6. Click “Download”.
+7. Ta-daaa!
+
+
+Hacking the parser / generator
+==============================
 
 
 Architecture

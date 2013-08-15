@@ -1,7 +1,5 @@
-This project is a parser and indexer for [MooTools](http://mootools.net) documentation.
-
-Installing the MooTools docset in Dash
-=========================================
+Installing the [MooTools](http://mootools.net) docset in [Dash](http://kapeli.com/dash)
+=======================================================================================
 
 ![Installation instructions](https://raw.github.com/MattiSG/Dash-MooTools/master/publication/instructions.png)
 

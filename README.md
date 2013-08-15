@@ -11,6 +11,8 @@ Installing the [MooTools](http://mootools.net) docset in [Dash](http://kapeli.co
 6. Click “Download”.
 7. Ta-daaa!
 
+If you find this piece of software valuable, starring this repo is a great way to show appreciation  :)
+
 
 Hacking the parser / generator
 ==============================

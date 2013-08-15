@@ -14,7 +14,9 @@ INIT_FILE = 'init.sql'
 Dir.glob("#{SOURCE_FOLDER}/**/*.md").each do |filename|
 	print "Converting #{filename}... "
 
-	html = Kramdown::Document.new(IO.read(filename)).to_html
+	markdown = IO.read(filename)
+
+	html = Kramdown::Document.new(markdown, template: 'resources/template.html.erb').to_html
 	output = File.join(HTML_FOLDER, filename.sub(SOURCE_FOLDER, '').sub('.md', '.html'))
 
 	FileUtils.mkdir_p(File.dirname(output))

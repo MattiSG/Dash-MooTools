@@ -1,0 +1,56 @@
+/* Dash-MooTools note:
+*  This file is a very simplified, manually edited version, from the docs.css file from the official mootools.net website.*/
+
+/* Dash-MooTools: manual additions */
+
+body {
+	margin: 2em;
+}
+
+/* Dash-MooTools: imported from the layout.css file from the official mootools.net website */
+
+body {
+	background: #f4f5f5;
+}
+
+/* @group Main */
+
+ul li {
+	list-style: square;
+}
+
+h1 {
+	font-size: 2.5em;
+}
+
+p.description {
+	font-size: 1.2em;
+}
+
+pre {
+	background: #fff;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding: 5px 7px;
+	overflow: auto;
+	font-size: 12px;
+}
+
+/* @end */
+
+/* @group Headings */
+
+h1, h2 {
+	border-bottom: 1px solid #ddd;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	color: #c17878;
+}
+
+h2 {
+	color: #78ba91;
+}
+
+/* @end */

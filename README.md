@@ -1,5 +1,15 @@
+An official MooTools docset is now included by default in Dash
+==============================================================
+
+Since v1.9.3, simply add it from the “Downloads” preference panel.
+
+**This repo and instructions below are kept for historical purposes (and for people stuck with OS X Snow Leopard who can't upgrade Dash), but are not offically supported nor maintained.**
+
+- - - - 
+
+
 Installing the [MooTools](http://mootools.net) docset in [Dash](http://kapeli.com/dash)
-=======================================================================================
+---------------------------------------------------------------------------------------
 
 ![Installation instructions](https://raw.github.com/MattiSG/Dash-MooTools/master/publication/instructions.png)
 
